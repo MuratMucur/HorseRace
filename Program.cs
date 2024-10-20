@@ -18,7 +18,7 @@ namespace HorseRace
     {
         static void Main(string[] args)
         {
-
+            //selection menu
 
             Console.WriteLine("Please select the following");
             Console.WriteLine("For manager, press 1");
@@ -26,6 +26,8 @@ namespace HorseRace
             Console.WriteLine("For Racegoer, press 3");
 
             string UserChoice = Console.ReadLine();
+            
+            //input validation
             int UserChoiceNumber = 0;
             while (!Int32.TryParse(UserChoice, out UserChoiceNumber) || UserChoiceNumber < 1 || UserChoiceNumber > 3)
             {
@@ -46,6 +48,8 @@ namespace HorseRace
                 Console.WriteLine("To upload list of horses, press 2");
 
                 string userChoice2 = Console.ReadLine();
+
+                //input validation
                 int userChoiceNumber2 = 0;
                 while (!Int32.TryParse(userChoice2, out userChoiceNumber2) || userChoiceNumber2 < 1 || userChoiceNumber2 > 2)
                 {
@@ -55,15 +59,15 @@ namespace HorseRace
                     Console.WriteLine("To upload list of horses, press 2");
                     userChoice2 = Console.ReadLine();
                 }
+
+                //create new event and add race to the event
                 if (userChoiceNumber2 == 1)
                 {
 
-
-                   
                     EventManagement newEvent = CreateNewEvent();
                     Console.WriteLine(newEvent);
                     Race race1 = CreateRace();
-                    Race race2 = new Race("Shelby Tournement", "Wednesday");
+                    Race race2 = new Race("Shelby Tournement", "Wednesday");//adding new race
                     newEvent.AddRace(race1);
                     newEvent.AddRace(race2);
                     Console.WriteLine(newEvent);
@@ -73,22 +77,21 @@ namespace HorseRace
                         Console.WriteLine(race);
                     }
 
-
-
-
                 }
+                //upload list of horses from text file
                 else if (userChoiceNumber2 == 2)
                 {
                     Console.WriteLine("Create a race to upload list of horses");
                     Race race3 = CreateRace();
 
-                    string filePath = "horses.txt";
+                    string filePath = "horses.txt"; //text file contains some horses
                     Readfromfile(filePath);
 
                 }
 
 
             }
+            //Add horses to chosen race
             else if (UserChoiceNumber == 2)
             {
 
@@ -159,12 +162,13 @@ namespace HorseRace
             else if (UserChoiceNumber == 3)
             {
                 
-                Console.WriteLine("sorry I didnt figure out this section:(");
+                Console.WriteLine("sorry I couldnt figure out the last question:(");
             }
 
 
         }
 
+        //Methode for creating new event
         public static EventManagement CreateNewEvent()
         {
             EventManagement newEvent = new EventManagement();
@@ -181,7 +185,7 @@ namespace HorseRace
         }
 
 
-
+        //methode for creating new race
         private static Race CreateRace()
         {
             Race newRace = new Race();
@@ -193,6 +197,7 @@ namespace HorseRace
 
         }
 
+        //methode for creating new horse
         private static Horse CreateHorse()
         {
             Horse NewHorse = new Horse();
@@ -206,7 +211,7 @@ namespace HorseRace
 
 
 
-
+        //uploading horse list from text file
         public static void Readfromfile(string filePath)
         {
             List<string> horses = File.ReadAllLines(filePath).ToList();

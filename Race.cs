@@ -57,7 +57,7 @@ namespace HorseRace
         }
 
 
-        //Methode to display race details
+        //to string methode to display race details
 
         public override string ToString()
         {

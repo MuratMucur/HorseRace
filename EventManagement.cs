@@ -62,7 +62,7 @@ namespace HorseRace
             races.Add(newRace);
         }
 
-        //methode for new race event
+        //to string methode for new race event
 
         public override string ToString()
         {
